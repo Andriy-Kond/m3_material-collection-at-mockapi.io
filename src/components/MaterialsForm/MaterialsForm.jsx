@@ -17,10 +17,8 @@ class MaterialsForm extends Component {
           initialValues={{ title: "", link: "" }}
           onSubmit={this.handleSubmit}>
           {props => {
-            console.log(
-              "MaterialsForm >> render >> props:::",
-              props.isSubmitting,
-            );
+            // З props Formik'а можна використовувати props.isSubmitting. Бо якщо використовувати this.props.isLoading, то доведеться його використати у addMaterial. А в цьому випадку при додаванні кожного нового матеріалу увесь список буде пропадати, бо в App.jsx по умові йде рендер або "LOADING" або <MaterialsList/>
+
             return (
               <Form>
                 <label>
@@ -31,7 +29,9 @@ class MaterialsForm extends Component {
                   <Field type="text" name="link" placeholder="Link" />
                 </label>
 
-                <button type="submit" disabled={props.isSubmitting}>
+                <button
+                  type="submit"
+                  disabled={props.isSubmitting || isSubmitting}>
                   Add material
                 </button>
               </Form>
