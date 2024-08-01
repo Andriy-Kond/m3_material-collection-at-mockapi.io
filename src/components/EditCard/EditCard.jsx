@@ -1,7 +1,6 @@
 import Modal from "components/Modal";
 import { Formik, Field, Form } from "formik";
 import { Component } from "react";
-import { createPortal } from "react-dom";
 
 class EditCard extends Component {
   submitEdit = (values, actions) => {
@@ -18,7 +17,7 @@ class EditCard extends Component {
 
   render() {
     const { toggleModal } = this.props;
-    return createPortal(
+    return (
       <Modal toggleModal={toggleModal}>
         <h3>Редагування</h3>
         <Formik
@@ -36,11 +35,7 @@ class EditCard extends Component {
             <button type="submit">Edit Material</button>
           </Form>
         </Formik>
-        {/* <button type="button" onClick={onClose}>
-          Close
-        </button> */}
-      </Modal>,
-      document.querySelector("#edit-root-portal"),
+      </Modal>
     );
   }
 }
