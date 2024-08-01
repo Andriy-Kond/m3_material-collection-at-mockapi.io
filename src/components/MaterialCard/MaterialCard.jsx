@@ -4,12 +4,8 @@ import { Component } from "react";
 class MaterialCard extends Component {
   state = { isOpenEditCard: false };
 
-  closeEditCard = () => {
-    this.setState({ isOpenEditCard: false });
-  };
-
-  openEditCard = () => {
-    this.setState({ isOpenEditCard: true });
+  toggleModal = () => {
+    this.setState(prevState => ({ isOpenEditCard: !prevState.isOpenEditCard }));
   };
 
   render() {
@@ -35,24 +31,22 @@ class MaterialCard extends Component {
           Delete
         </button>
 
-        {/* Todo: modal window for editing instead this button: */}
         <button
           type="button"
           // onClick={() => {
           //   this.setState({ isOpenEditCard: true });
           //   updateMaterial({ ...material, title: Date.now() });
           // }}
-          onClick={this.openEditCard}>
+          onClick={this.toggleModal}>
           EDIT
         </button>
         {isOpenEditCard && (
           <EditCard
-            onClose={this.closeEditCard}
+            toggleModal={this.toggleModal}
             updateMaterial={updateMaterial}
             material={material}
           />
         )}
-        {/* modal window can be rendered in this card */}
       </>
     );
   }
